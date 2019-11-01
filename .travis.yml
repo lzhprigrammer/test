@@ -24,12 +24,10 @@ compiler:
 
 env:
 - PURPOSE=compile-with-make
-- PURPOSE=compile-with-cmake
-- PURPOSE=compile-with-bazel
-- PURPOSE=unittest
-- PURPOSE=compile-with-make-all-options
-- PURPOSE=compile-with-cmake-all-options
-- PURPOSE=compile-with-bazel-all-options
+
+before_install:
+- sudo bash -c "echo 'before_install\n'"
+- sudo apt-get install automake bison flex g++  libevent-dev make 
 
 before_script:
 - ulimit -c unlimited -S       # enable core dumps
@@ -38,10 +36,8 @@ before_script:
 # only promote the 'echo' part but not the whole command.
 - sudo bash -c "echo 'core.%e.%p' > /proc/sys/kernel/core_pattern"
 
-before_install:
-
 install:
--make get-deps
+- sudo apt-get install -y gdb
 
 script:
 - sh build_in_travis_ci.sh
