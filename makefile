@@ -2,7 +2,7 @@ main:first.o
 	g++ -std=c++11 -g -O2 -Wno-deprecated -Wall -o main first.o 
 
 first.o:first.cpp
-	g++ -c -I./ first.cpp
+	g++ -std=c++11 -c -I./ first.cpp
 
 .PHONY:clean
 clean:
